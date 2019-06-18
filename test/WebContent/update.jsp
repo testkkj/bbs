@@ -92,7 +92,7 @@
 						<tr>
 							<td><textarea type="text" class="form-control"
 									placeholder="글 내용 " name="bbsContent" maxlength="2048"
-									style="height: 350px;"><%=bbs.getBbsContent()%>"></textarea></td>
+									style="height: 350px"><%=bbs.getBbsContent()%></textarea></td>
 						</tr>
 					</tbody>
 				</table>

@@ -15,7 +15,7 @@
 <body>
 	<%
 		String userID = null;
-		if (session.getAttribute("userId") != null) {
+		if (session.getAttribute("userId") == null) {
 			userID = (String) session.getAttribute("userID");
 		}
 		if (userID == null) {
@@ -26,6 +26,9 @@
 			script.println("</script>");
 		}
 		int bbsID = 0;
+		if (request.getParameter("bbsID") != null) {
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
 		if (bbsID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -34,7 +37,7 @@
 			script.println("</script>");
 		}
 		Bbs bbs = new BbsDAO().getBbs(bbsID);
-		if (!userID.equals(bbs.getBbsID())) {
+		if (!userID.equals(bbs.getUserID())) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('권한이 없습니다 .')");
