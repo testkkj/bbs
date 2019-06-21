@@ -51,16 +51,17 @@ public class BbsDAO {
 		return -1;// 데이터베이스 오류
 	}
 
-	public int write(String bbsTitle, String userID, String bbsContent) {
-		String SQL = "insert into bbs values (?,?,?,?,?,?)";
+	public int write(String bbsTitle, String userID, String bbsIP, String bbsContent) {
+		String SQL = "insert into bbs(bbsID, bbsTitle, userID, bbsIP, bbsDate, bbsContent, bbsAvailable) values (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, bbsTitle);
 			pstmt.setString(3, userID);
-			pstmt.setString(4, getDate());
-			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1);
+			pstmt.setString(4, bbsIP);
+			pstmt.setString(5, getDate());
+			pstmt.setString(6, bbsContent);
+			pstmt.setInt(7, 1);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,20 +70,21 @@ public class BbsDAO {
 	}
 
 	public ArrayList<Bbs> getList(int pageNumber) {
-		String SQL = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 10";
+		String SQL = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 5";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 5);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Bbs bbs = new Bbs();
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setUserID(rs.getString(3));
-				bbs.setBbsDate(rs.getString(4));
-				bbs.setBbsContent(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsIP(rs.getString(4));
+				bbs.setBbsDate(rs.getString(5));
+				bbs.setBbsContent(rs.getString(6));
+				bbs.setBbsAvailable(rs.getInt(7));
 				list.add(bbs);
 			}
 		} catch (Exception e) {
@@ -96,7 +98,7 @@ public class BbsDAO {
 		String SQL = "select * from bbs where bbsID < ? and bbsAvailable = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 5);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return true;
@@ -119,9 +121,10 @@ public class BbsDAO {
 				bbs.setBbsID(rs.getInt(1));
 				bbs.setBbsTitle(rs.getString(2));
 				bbs.setUserID(rs.getString(3));
-				bbs.setBbsDate(rs.getString(4));
-				bbs.setBbsContent(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setBbsIP(rs.getString(4));
+				bbs.setBbsDate(rs.getString(5));
+				bbs.setBbsContent(rs.getString(6));
+				bbs.setBbsAvailable(rs.getInt(7));
 				return bbs;
 			}
 		} catch (Exception e) {

@@ -78,7 +78,7 @@
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped"
-				style="text-align: center; border: 1px solid #dddddd">
+				style="text-align: center; border: 2px solid #dddddd">
 				<thead>
 					<tr>
 						<th colspan="3"
@@ -88,7 +88,7 @@
 				<tbody>
 					<tr>
 						<td style="width: 20%;">글 제목</td>
-						<td colspan="2"><%=bbs.getBbsTitle().replaceAll(" ", "&npsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<td colspan="2"><%=bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 					.replaceAll("\n", "<br>")%></td>
 					</tr>
 					<tr>
@@ -103,7 +103,7 @@
 					</tr>
 					<tr>
 						<td style="width: 20%;">내용</td>
-						<td colspan="2" style="min-height: 200px; text-algin: left;"><%=bbs.getBbsContent().replaceAll(" ", "&npsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+						<td colspan="2" style="min-height: 200px; text-algin: left;"><%=bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 					.replaceAll("\n", "<br>")%></td>
 					</tr>
 				</tbody>

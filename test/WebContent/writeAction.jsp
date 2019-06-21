@@ -1,3 +1,4 @@
+<%@page import="bbs.Bbs"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ page import="bbs.BbsDAO"%>
@@ -7,6 +8,7 @@
 %>
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
 <jsp:setProperty property="bbsTitle" name="bbs" />
+<jsp:setProperty property="bbsIP" name="bbs" />
 <jsp:setProperty property="bbsContent" name="bbs" />
 <!DOCTYPE html>
 <html>
@@ -36,7 +38,8 @@
 				script.println("</script>");
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
+				bbs.setBbsIP(request.getRemoteAddr());
+				int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsIP(), bbs.getBbsContent());
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");

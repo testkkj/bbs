@@ -10,6 +10,5 @@
 	<script>
 		location.href = 'main.jsp';
 	</script>
-	A_
 </body>
 </html>

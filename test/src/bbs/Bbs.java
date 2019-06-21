@@ -5,6 +5,7 @@ public class Bbs {
 	private int bbsID;
 	private String bbsTitle;
 	private String userID;
+	private String bbsIP;
 	private String bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
@@ -31,6 +32,14 @@ public class Bbs {
 
 	public void setUserID(String userID) {
 		this.userID = userID;
+	}
+
+	public String getBbsIP() {
+		return bbsIP;
+	}
+
+	public void setBbsIP(String bbsIP) {
+		this.bbsIP = bbsIP;
 	}
 
 	public String getBbsDate() {
