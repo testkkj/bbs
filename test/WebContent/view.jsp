@@ -97,8 +97,7 @@
 					</tr>
 					<tr>
 						<td style="width: 20%;">작성시간</td>
-						<td colspan="2">
-						<td><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시"
+						<td colspan="2"><%=bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시"
 					+ bbs.getBbsDate().substring(14, 16) + "분"%></td>
 					</tr>
 					<tr>
